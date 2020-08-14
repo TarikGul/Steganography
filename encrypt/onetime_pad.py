@@ -6,8 +6,23 @@ def str2bin(message):
     return binary
 
 def generate_random_word(length, alpha):
-    print()
+    a = alpha.split('')
+    word = []
 
+    i = 0
+    while (i < length):
+        random = random.randint(0, len(a))
+
+        if (i == 0 and random == 26) or (i == length - 1 and random == 26):
+            pass
+        elif (random == 26 and word[len(word) - 1] == ' '):
+            pass
+        i = i + 1
+
+        word.append(a[random])
+    
+    return word.join('')
+    
 def generate_one_time_pad(message):
     alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
     copy = message.split(' ')
