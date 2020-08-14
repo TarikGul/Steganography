@@ -6,26 +6,27 @@ def str2bin(message):
     return binary
 
 def generate_random_word(length, alpha):
-    a = alpha.split('')
+    a = list(alpha)
     word = []
 
     i = 0
     while (i < length):
-        random = random.randint(0, len(a))
+        rand = random.randint(0, len(a) - 1)
 
-        if (i == 0 and random == 26) or (i == length - 1 and random == 26):
+        if (i == 0 and rand == 26) or (i == length - 1 and rand == 26):
             pass
-        elif (random == 26 and word[len(word) - 1] == ' '):
+        elif (rand == 26 and word[len(word) - 1] == ' '):
             pass
         i = i + 1
 
-        word.append(a[random])
-    
-    return word.join('')
+        print(a[rand], rand)
+        word.append(a[rand])
+    print("".join(word))
+    return "".join(word)
     
 def generate_one_time_pad(message):
     alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
-    copy = message.split(' ')
+    copy = message.split(' ', 1)
     one_time_pad = []
 
     for word in copy:
@@ -40,4 +41,5 @@ def generate_one_time_pad(message):
     return one_time_pad.join('')
 
 if __name__ == '__main__':
-    str2bin('hey')
+    ab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
+    generate_random_word(10, ab)
