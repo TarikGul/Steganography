@@ -19,9 +19,8 @@ def generate_random_word(length, alpha):
             pass
         i = i + 1
 
-        print(a[rand], rand)
         word.append(a[rand])
-    print("".join(word))
+
     return "".join(word)
     
 def generate_one_time_pad(message):
@@ -29,17 +28,22 @@ def generate_one_time_pad(message):
     copy = message.split(' ', 1)
     one_time_pad = []
 
-    for word in copy:
-        random_word = generate_random_word(len(word), alpha)
-        random = random.randint(0, len(alpha))
+    i = 0
+    while (i < len(copy)):
+        random_word = generate_random_word(len(copy[i]), alpha)
+        rand = random.randint(0, len(alpha) - 1)
 
         one_time_pad.append(random_word)
 
         if (i < len(copy) - 1):
-            one_time_pad.append(alpha[random])
+            one_time_pad.append(alpha[rand])
+        
+        i = i + 1
     
-    return one_time_pad.join('')
+    return ''.join(one_time_pad)
 
 if __name__ == '__main__':
     ab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
+    message = 'bye say hello'
+    print(generate_one_time_pad(message))
     generate_random_word(10, ab)
