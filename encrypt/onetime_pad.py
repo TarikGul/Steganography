@@ -1,6 +1,32 @@
 import math
 import random
 
+def generate_encryption(message):
+    one_time_pad = generate_one_time_pad(message)
+    one_time_pad_bin = str2bin(one_time_pad)
+    message_bin = str2bin(message)
+    encryption = []
+
+    if (len(one_time_pad_bin) != len(message_bin)):
+        print('message and one time pad must be the same length')
+        return
+    
+    for i in range(len(message_bin)):
+        new_bin = xor(message_bin[i], one_time_pad_bin[i])
+        encryption.append(new_bin)
+
+    return "".join(encryption)
+
+def xor(a, b):
+    binary = ''
+
+    print(a)
+    print(b)
+    for i in range(len(a)):
+        print('aaaaaa', a[i])
+        num = bin(int(a[i]) ^ int(b[i]))
+        binary = binary + str(num)
+
 def str2bin(message):
     binary = ' '.join(format(ord(x), 'b') for x in message)
     return binary
@@ -43,7 +69,6 @@ def generate_one_time_pad(message):
     return ''.join(one_time_pad)
 
 if __name__ == '__main__':
-    ab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
-    message = 'bye say hello'
-    print(generate_one_time_pad(message))
-    generate_random_word(10, ab)
+    message = 'hey there kiddo this is the one time pad'
+    result = generate_encryption(message)
+    print(result)
