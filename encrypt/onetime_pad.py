@@ -1,10 +1,11 @@
 import math
 import random
+from binaries import binaries
 
 def generate_encryption(message):
     one_time_pad = generate_one_time_pad(message)
-    one_time_pad_bin = str2bin(one_time_pad)
-    message_bin = str2bin(message)
+    one_time_pad_bin = string2bin(one_time_pad)
+    message_bin = string2bin(message)
     encryption = []
 
     if (len(one_time_pad_bin) != len(message_bin)):
@@ -20,15 +21,22 @@ def generate_encryption(message):
 def xor(a, b):
     binary = ''
 
-    print(a)
-    print(b)
     for i in range(len(a)):
-        print('aaaaaa', a[i])
         num = bin(int(a[i]) ^ int(b[i]))
-        binary = binary + str(num)
+        binary = binary + str(num[2])
+    
+    return binary
 
-def str2bin(message):
-    binary = ' '.join(format(ord(x), 'b') for x in message)
+def string2bin(message):
+    binary = []
+
+    # We use our binaries.py file in order to get each letters correspoding 
+    # binary equivalent
+    i = 0
+    while (i < len(message)):
+        binary.append(binaries[message[i]])
+        i = i + 1
+    
     return binary
 
 def generate_random_word(length, alpha):
