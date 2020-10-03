@@ -30,3 +30,8 @@ Then you will be prompted to write the message you want to embed it with.
 Then in order to decode that message 
 
 ``` python hide.py -d video.png```
+
+# TODOS
+
+Add the encryption to the message then embed the message. I wrote a one time pad to use. 
+The next and more adventurous goal should be to embed files into an image. 
